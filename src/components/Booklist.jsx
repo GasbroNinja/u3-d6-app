@@ -17,7 +17,11 @@ function Booklist () {
             <Container>
               <Row>
                 {fantasy.map((fantasy) => (
-                  <SingleBook key={fantasy.asin} fantasy={fantasy} />
+                  <SingleBook
+                    key={fantasy.asin}
+                    fantasy={fantasy}
+                    
+                  />
                 ))}
               </Row>
             </Container>

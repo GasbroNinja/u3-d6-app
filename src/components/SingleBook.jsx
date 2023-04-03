@@ -1,13 +1,17 @@
 import { Component } from "react";
 import { Col, Card, Badge } from "react-bootstrap";
+import CommentsPerBook from "./CommentsPerBook";
 
 
 
 class SingleBook extends Component {
   state = {
-    selected: false
-
+    selected: false,
+    
   }
+
+
+
 
 
   render() {
@@ -22,7 +26,11 @@ class SingleBook extends Component {
            }
            onClick={() => this.setState({ selected: !this.state.selected })}
          >
-           <Card.Img src={fantasy.img} alt="Card image" />
+           <Card.Img
+             src={fantasy.img}
+             alt="Card image"
+             style={{ objectFit: "cover", maxHeight: "500px" }}
+           />
            <Card.ImgOverlay className="d-flex flex-column align-items-baseline">
              <Card.Title
                className="justify-content-center"
@@ -32,17 +40,25 @@ class SingleBook extends Component {
              </Card.Title>
              <Badge
                bg="dark"
-               className="fs-5 border border-3 border-success mb-3"
+               className="fs-5 border border-3 border-success mb-1"
              >
                <Card.Text className="text-success">{fantasy.price} €</Card.Text>
              </Badge>
-             <Badge bg="dark" className="fs-5 border border-3 border-danger">
+             <Badge
+               bg="dark"
+               className="fs-5 border border-3 border-danger mb-1"
+             >
                <Card.Text
                  className="text-uppercase fs-4"
                  style={{ color: "#ff8cbc" }}
                >
                  {fantasy.category}
                </Card.Text>
+             </Badge>
+             <Badge bg="dark" className="fs-5 border border-3 border-success">
+               {this.state.selected && (
+                 <CommentsPerBook id={fantasy.asin} />
+               )}
              </Badge>
            </Card.ImgOverlay>
          </Card>
