@@ -2,6 +2,7 @@ import { Component } from "react";
 import { Card, Spinner } from "react-bootstrap";
 import CommentLists from "./CommentLists";
 import AddComment from "./AddComment";
+import "../Scroll.css";
 // Table riceve selected NON più dal proprio stato,
 // ma da una prop con lo stesso nome (prop.selected) che arriva da fuori (componente App)
 
@@ -31,13 +32,23 @@ class CommentsPerBook extends Component {
         });
       if (response.ok) {
         const posts = await response.json();
-        this.setState({ comments: posts });
-        console.log("setState() successfully");
+        console.log("data retrived")
+        this.setState({ comments: posts }, () => console.log("setState() successfully"));
+        
       }
     } catch (error) {
       console.log(error);
     }
   };
+
+  componentDidUpdate(prevProps, PrevState){
+    console.log("didUpdate()")
+    if (prevProps.id !== this.props.id) {
+      this.fetchComments()
+    } else {
+      console.log("Component didUpdate without fetch")
+    }
+  }
 
   render() {
     return (

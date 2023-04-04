@@ -41,17 +41,22 @@ class AddComment extends Component {
     }
     this.postComment(this.props.id);
   };
+
   render() {
     return (
       <>
-        <Form className="mb-3" onSubmit={this.onSubmit} onClick={(e) => e.stopPropagation()}>
+        <Form
+          className="mb-3"
+          onSubmit={this.onSubmit}
+          onClick={(e) => e.stopPropagation()}
+        >
           <Form.Control
-          className="border border-success"
+            className="border border-success"
             value={this.state.comment}
             onChange={(e) => this.setState({ comment: e.target.value })}
           />
           <select
-          className="my-3"
+            className="my-3"
             value={this.state.rate}
             onChange={(e) => this.setState({ rate: e.target.value })}
           >
@@ -63,7 +68,9 @@ class AddComment extends Component {
             <option value="5">5</option>
           </select>
           <br />
-          <Button type="submit" variant="success">SEND</Button>
+          <Button type="submit" variant="success">
+            SEND
+          </Button>
         </Form>
       </>
     );
