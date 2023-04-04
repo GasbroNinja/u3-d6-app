@@ -7,7 +7,7 @@ import CommentsPerBook from "./CommentsPerBook";
 class SingleBook extends Component {
   state = {
     selected: false,
-    
+    selectedBook: ""
   }
 
 
@@ -19,13 +19,13 @@ class SingleBook extends Component {
 
    return (
      <>
-       <Col xs={12} className="m-2">
+       <Col xs={12} className="my-2">
          <Card
            className={
              this.state.selected ? "border border-danger border border-5" : null
            }
            onClick={() => this.setState({ selected: !this.state.selected })}
-           style={{ marginBottom: "600px" }}
+           style={{}}
          >
            <Card.Img
              src={this.props.fantasy.img}
@@ -50,7 +50,6 @@ class SingleBook extends Component {
              <Badge
                bg="dark"
                className="fs-5 border border-3 border-danger mb-1 d-flex align-self"
-               style={{ marginBottom: "440px" }}
              >
                <Card.Text
                  className="text-uppercase fs-4"
@@ -59,18 +58,18 @@ class SingleBook extends Component {
                  {this.props.fantasy.category}
                </Card.Text>
              </Badge>
-             <Badge
-               bg="dark"
-               className="fs-5 border border-3 border-success"
-               style={{ marginTop: "370px", minWidth:"500px" }}
-             >
-               {this.state.selected && (
-                 <CommentsPerBook id={this.props.fantasy.asin} />
-               )}
-             </Badge>
            </Card.ImgOverlay>
          </Card>
        </Col>
+       <Badge
+         bg="dark"
+         className="fs-5 border border-3 border-success"
+         style={{ minWidth: "500px" }}
+       >
+         {this.state.selected && (
+           <CommentsPerBook id={this.props.fantasy.asin} />
+         )}
+       </Badge>
      </>
    );
 };
