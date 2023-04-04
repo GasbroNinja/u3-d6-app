@@ -7,7 +7,7 @@ import CommentsPerBook from "./CommentsPerBook";
 class SingleBook extends Component {
   state = {
     selected: false,
-    selectedBook: ""
+    
   }
 
 

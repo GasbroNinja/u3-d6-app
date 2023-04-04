@@ -1,5 +1,5 @@
 import { Badge } from "react-bootstrap";
-import "../Scroll.css"
+
 
 const CommentLists = (props) => (
   <div>

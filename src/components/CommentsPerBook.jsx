@@ -20,33 +20,35 @@ class CommentsPerBook extends Component {
     this.fetchComments(this.props.id);
   };
 
-  
-
-  fetchComments = async id => {
+  fetchComments = async (id) => {
     try {
-      const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/${id}`, {
+      const response = await fetch(
+        `https://striveschool-api.herokuapp.com/api/comments/${id}`,
+        {
           headers: {
             Authorization:
               "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDJiMjRlYTBlNzg3MDAwMTRkODkxZTMiLCJpYXQiOjE2ODA1NDkwOTksImV4cCI6MTY4MTc1ODY5OX0.wZNhhXeC4pLpWKZ9WtjZw4t7oG5_9akjS-5YIWSviJg",
           },
-        });
+        }
+      );
       if (response.ok) {
         const posts = await response.json();
-        console.log("data retrived")
-        this.setState({ comments: posts }, () => console.log("setState() successfully"));
-        
+        console.log("data retrived");
+        this.setState({ comments: posts }, () =>
+          console.log("setState() successfully")
+        );
       }
     } catch (error) {
       console.log(error);
     }
   };
 
-  componentDidUpdate(prevProps, PrevState){
-    console.log("didUpdate()")
+  componentDidUpdate(prevProps, PrevState) {
+    console.log("didUpdate()");
     if (prevProps.id !== this.props.id) {
-      this.fetchComments()
+      this.fetchComments();
     } else {
-      console.log("Component didUpdate without fetch")
+      console.log("Component didUpdate without fetch");
     }
   }
 
@@ -58,7 +60,7 @@ class CommentsPerBook extends Component {
             <Card className="bg-dark d-flex justify-content-center">
               <Card.Body
                 className="bg-dark d-flex justify-content-center flex-column"
-                style={{ maxWidth: "800px", minWidth:"200px" }}
+                style={{ maxWidth: "800px", minWidth: "200px" }}
               >
                 <AddComment id={this.props.id} />
                 <CommentLists
