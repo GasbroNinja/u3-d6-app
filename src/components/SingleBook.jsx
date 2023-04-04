@@ -15,7 +15,7 @@ class SingleBook extends Component {
 
 
   render() {
-    const { fantasy } = this.props;
+   
 
    return (
      <>
@@ -25,9 +25,10 @@ class SingleBook extends Component {
              this.state.selected ? "border border-danger border border-5" : null
            }
            onClick={() => this.setState({ selected: !this.state.selected })}
+           style={{ marginBottom: "600px" }}
          >
            <Card.Img
-             src={fantasy.img}
+             src={this.props.fantasy.img}
              alt="Card image"
              style={{ objectFit: "cover", maxHeight: "500px" }}
            />
@@ -36,28 +37,35 @@ class SingleBook extends Component {
                className="justify-content-center"
                style={{ color: "#ff8cbc" }}
              >
-               {fantasy.title}
+               {this.props.fantasy.title}
              </Card.Title>
              <Badge
                bg="dark"
                className="fs-5 border border-3 border-success mb-1"
              >
-               <Card.Text className="text-success">{fantasy.price} €</Card.Text>
+               <Card.Text className="text-success">
+                 {this.props.fantasy.price} €
+               </Card.Text>
              </Badge>
              <Badge
                bg="dark"
-               className="fs-5 border border-3 border-danger mb-1"
+               className="fs-5 border border-3 border-danger mb-1 d-flex align-self"
+               style={{ marginBottom: "440px" }}
              >
                <Card.Text
                  className="text-uppercase fs-4"
                  style={{ color: "#ff8cbc" }}
                >
-                 {fantasy.category}
+                 {this.props.fantasy.category}
                </Card.Text>
              </Badge>
-             <Badge bg="dark" className="fs-5 border border-3 border-success">
+             <Badge
+               bg="dark"
+               className="fs-5 border border-3 border-success"
+               style={{ marginTop: "370px", minWidth:"500px" }}
+             >
                {this.state.selected && (
-                 <CommentsPerBook id={fantasy.asin} />
+                 <CommentsPerBook id={this.props.fantasy.asin} />
                )}
              </Badge>
            </Card.ImgOverlay>

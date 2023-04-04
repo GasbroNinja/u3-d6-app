@@ -1,7 +1,7 @@
 import { Component } from "react";
 import { Card, Spinner } from "react-bootstrap";
 import CommentLists from "./CommentLists";
-
+import AddComment from "./AddComment";
 // Table riceve selected NON più dal proprio stato,
 // ma da una prop con lo stesso nome (prop.selected) che arriva da fuori (componente App)
 
@@ -43,12 +43,13 @@ class CommentsPerBook extends Component {
     return (
       <div>
         <>
-          {this.state.comments ? (
+          {this.state.comments.length > 0 ? (
             <Card className="bg-dark d-flex justify-content-center">
               <Card.Body
-                className="bg-dark d-flex justify-content-center"
-                style={{ minWidth: "500px" }}
+                className="bg-dark d-flex justify-content-center flex-column"
+                style={{ maxWidth: "800px", minWidth:"200px" }}
               >
+                <AddComment id={this.props.id} />
                 <CommentLists
                   comment={this.state.comments}
                   style={{ overflowX: "scroll", overflowY: "hidden" }}
